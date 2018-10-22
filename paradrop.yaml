@@ -1,0 +1,10 @@
+description: Slides for the Paradrop Edge Computing tutorial.
+name: tutorial-slides
+services:
+  main:
+    source: .
+    type: normal
+version: 1
+web:
+  port: 80
+  service: main
