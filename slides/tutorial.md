@@ -22,6 +22,12 @@ name: agenda
   - Account setup and accessing a ParaDrop node
 3. Self-directed exercises
 
+???
+
+- Also have a break in the middle.
+- Take your time with the exercises, get the most out of them.
+- Extra time, try implementing your own ideas.
+
 ---
 
 name: edge-computing
@@ -31,12 +37,17 @@ name: edge-computing
 ]
 
 .right-column[
-- Builds off the cloud computing paradigm
 - Move computation closer to users
 - Reduce the effect of network latency
+- Builds off the cloud computing paradigm
 
 ![Default-aligned image](figures/edge-computing.svg)
 ]
+
+???
+
+- Suman's talk will probably cover motivation for edge computing.
+- Key point is that we use same techniques and technologies as cloud computing.
 
 ---
 
@@ -48,10 +59,17 @@ name: edge-computing
 .right-column[
 * Early predecessor to edge computing
 * Focus entirely on caching static content
-* Low programmability
+* No programmability at the edge
 
 ![Default-aligned image](figures/content-delivery-network.svg)
 ]
+
+???
+
+- Akamai launched its CDN in the 1990s.
+- Cache static content, especially images and videos.
+- The key insight was there - latency matters.
+- But all the processing and dynamic behavior still happens in the cloud server.
 
 ---
 
@@ -68,6 +86,15 @@ name: edge-computing
 
 ![Default-aligned image](figures/mobile-edge-computing.svg)
 ]
+
+???
+
+- Important technology that should be on our radar as edge computing researchers.
+- Current generation cellular send packets potentially far away through the core.
+  - Implement mobility, accounting.
+  - However, this adds latency.
+- Feature to offload traffic to local servers is gradually being developed and standardized.
+- Will likely follow a IaaS/PaaS type model like AWS but remains to be seen.
 
 ---
 
@@ -87,6 +114,13 @@ name: edge-computing
 ![Default-aligned image](figures/paradrop-edge-computing.svg)
 ]
 
+???
+
+- Finally, take a look at edge computing in the far reaches of the network.
+- Paradrop fills this niche by modifying the WiFi access point to make it programmable.
+- Unique opportunities based on types of devices that connect here.
+- Also challenging due to the coordination of distributed nodes and different ownership models.
+
 ---
 
 name: extreme-edge
@@ -98,6 +132,16 @@ name: extreme-edge
 * Always-on, low latency, privacy-preserving programmable substrate
 
 ![Default-aligned image](figures/extreme-edge.svg)
+
+???
+
+- Let's talk a little more about the extreme edge and some inspiring use cases.
+- Suman probably mentioned the smart home and IoT.
+- Can use edge computing to perform computation in a way that respects privacy.
+- Also want to broaden our scope to look at smart cities with connected vehicles.
+  - Could be drones used by emergency responders.
+  - Coordination of traffic at road intersections.
+  - One of the exercises you will do today will analyze video from a traffic camera.
 
 ---
 
@@ -133,6 +177,17 @@ class: text-only
 ![Default-aligned image](figures/paradrop-block-diagram.svg)
 ]
 
+???
+
+- This figure shows the layers of software and hardware.
+- The applications at top are also referred to as "chutes".
+  - Chutes can use APIs exposed by ParaDrop or our add-on modules.
+- The ParaDrop daemon communicates with Docker to manage the applications.
+- Each of these middle modules is installed as a snap.
+  - That means the version is carefully controlled by the operating system.
+- Finally, the hardware substrate could be a WiFi router, a server, a Raspberry Pi.
+  - It could be x86 or ARM, and so on.
+
 ---
 
 .left-column[
@@ -165,8 +220,16 @@ COPY . /opt/app/
 EXPOSE 3000
 CMD ["node", "index.js"]
 ```
-
 ]
+
+???
+
+- This is an example of a Dockerfile for a service built using node.js.
+  - It inherits from the Docker image maintained by node.js developers.
+  - It installs some language-level packages through npm.
+  - It installs its own application code.
+  - Then it configures the exposed network port and command to start it.
+- Any machine running Docker can install this service in a reproducible way.
 
 ---
 
@@ -193,6 +256,13 @@ class: text-only
   - Serve images as a virtual camera
   - Used for this tutorial in place of physical cameras
 ]
+
+???
+
+- Airshark was a research project at UW-Madison.
+- Voice module could be used to implement functions like a smart speaker / voice assistant.
+- Image server is a web server that provides a different frame for each request.
+- These are a few examples of add-ons we have implemented.
 
 ---
 
