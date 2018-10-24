@@ -1,2 +1,2 @@
 FROM nginx:stable-alpine
-COPY slides /usr/share/nginx/html
+COPY docs /usr/share/nginx/html
